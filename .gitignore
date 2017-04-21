@@ -1,2 +1,6 @@
 ## NPM ##
 node_modules
+
+## Compiled files ##
+compiled/
+public/bundle.js
