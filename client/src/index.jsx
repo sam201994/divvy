@@ -12,6 +12,7 @@ import App from './components/App.jsx';
 import AddBill from './components/AddBill/AddBillMain.jsx';
 import Friends from './components/Friends/FriendsMain.jsx';
 import Settings from './components/Settings/SettingsMain.jsx';
+import Auth from './components/Auth/Auth.jsx';
 
 const Root = props => (
   <Router history={browserHistory}>
@@ -19,6 +20,7 @@ const Root = props => (
 	    <Route path="/friends" component={Friends}>Friends</Route>
 	    <Route path="/addBill" component={AddBill}/>
 	    <Route path="/settings" component={Settings}/>
+	    <Route path="/auth" component={Auth}/>
     </Route>
  </Router>
 );

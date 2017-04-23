@@ -17,6 +17,9 @@ const Nav = () => (
       <Link to="settings">
         <button>settings</button>
       </Link>
+      <Link to="auth">
+        <button>Auth</button>
+      </Link>
     </nav>
   </div>
 );
