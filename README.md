@@ -1,4 +1,4 @@
-# DIVVY ![exp icon](https://github.com/sam201994/divvy/client/dist/img/favicon.png
+# DIVVY ![exp icon](https://github.com/sam201994/divvy/blob/master/client/dist/img/favicon.png)
 
 Split your Bills.
 
