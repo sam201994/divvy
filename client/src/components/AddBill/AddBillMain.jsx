@@ -1,6 +1,5 @@
+/* React and React-Router */
 import React, {Component} from 'react';
-// import store from '../../redux/store';
-import { connect } from 'react-redux';
 
 const AddBillMain = () => {
   return (
@@ -10,9 +9,4 @@ const AddBillMain = () => {
   )
 }
 
-// export default connect((store) => {
-//   return {
-
-//   };
-// })(AddBillMain);
 export default AddBillMain

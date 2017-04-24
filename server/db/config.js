@@ -2,7 +2,6 @@ var mongoose = require('mongoose');
 
 mongoURI = 'mongodb://localhost/myapp';
 
-// mongoose.connect(MONGO_URI);
 mongoose.connect(mongoURI);
 
 // Run in seperate terminal window using 'mongod'

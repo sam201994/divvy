@@ -1,13 +1,12 @@
+/* React */
 import React, {Component} from 'react';
-// import store from '../../redux/store';
-import { connect } from 'react-redux';
 
-const SignIn = (props) => (
+const Signin = (props) => (
   <div id="signin">
     <h2>Log in to Begin Divvy</h2>
-    <form name="signinForm" onSubmit={props.signin}>
+    <form name="signinForm">
       <div>
-        <input type="email" name="email" placeholder="Email" required />
+        <input type="text" name="username" placeholder="username" required />
       </div>
       <div>
         <input type="password" name="password" placeholder="Password" required />
@@ -18,10 +17,4 @@ const SignIn = (props) => (
   </div>
 );
 
-
-// export default connect((store) => {
-//   return {
-
-//   };
-// })(FriendsMain);
-export default SignIn;
+export default Signin;
