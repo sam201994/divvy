@@ -1,5 +1,6 @@
 const defaults = {
-  myName:'' 
+  myName:'',
+  authError:'' 
 };
 
 export default function authReducer(state = defaults, action) {
@@ -7,6 +8,11 @@ export default function authReducer(state = defaults, action) {
     case 'UPDATE_MYNAME': {
     	const newState = Object.create(state);
     	newState.myName = action.payload.myName;
+      return newState;
+    }
+    case 'UPDATE_ERROR': {
+    	const newState = Object.create(state);
+    	newState.authError = action.payload.err;
       return newState;
     }
   }

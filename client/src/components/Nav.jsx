@@ -2,13 +2,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Link} from 'react-router';
-import authHelpers from './Auth/auth-helpers.js';
 
+/* redux */
 import store from '../redux/store';
 import { connect } from 'react-redux';
 
+/* other files */
 import { loggedInName } from '../redux/actions/authActions.js';
-
 
 const Nav = ({ auth }) => {
   const myName = auth.myName;
@@ -16,10 +16,7 @@ const Nav = ({ auth }) => {
     <div>
       <h2>DIVVY - {myName}</h2>
       <nav>
-        <Link to="auth">
-          <button onClick={authHelpers.logout}>Log Out</button>
-        </Link>
-        <Link to="friends">
+       <Link to="friends">
           <button>friends</button>
         </Link>
         <Link to="addBill">
@@ -27,9 +24,6 @@ const Nav = ({ auth }) => {
         </Link>
         <Link to="settings">
           <button>settings</button>
-        </Link>
-        <Link to="auth">
-          <button>Auth</button>
         </Link>
       </nav>
     </div>

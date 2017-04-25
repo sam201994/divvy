@@ -1,10 +1,16 @@
 /* React and React-Router */
-import React, {Component} from 'react';
+import React from 'react';
+import {Link} from 'react-router';
+
+/* other files */
+import authHelpers from '../Auth/auth-helpers.js';
 
 const SettingsMain = () => {
   return (
     <div>
-      We are in Settings
+       <Link to="auth">
+          <button onClick={authHelpers.logout}>Log Out</button>
+        </Link>
     </div>
   )
 }

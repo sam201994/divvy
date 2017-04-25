@@ -1,11 +1,18 @@
 /* React */
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 
+/* Redux */
+import store from '../../redux/store';
+import { connect } from 'react-redux';
 
-const Signup = (props) => (
+/* other files */
+import { handleSignup } from '../../redux/actions/authActions.js';
+
+const Signup = ({ auth }) => (
   <div id="signup">
     <h2>Manage your expenses</h2>
-    <form name="signupForm" onSubmit={props.signup}>
+    <form name="signupForm" onSubmit={handleSignup}>
       <div>
         <input type="text" name="name" placeholder="name" required />
       </div>
@@ -20,7 +27,12 @@ const Signup = (props) => (
       </div>
       <button type="submit" className="btn">Signup</button>
     </form>
-    <div className="error-text">{props.error}</div>
+    <div className="error-text">{auth.authError}</div>
   </div>
 );
-export default Signup;
+
+export default connect((store) => {
+  return {
+    auth: store.auth
+  };
+})(Signup);

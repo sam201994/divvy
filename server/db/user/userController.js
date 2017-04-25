@@ -8,35 +8,40 @@ const dbconfig = require('../dbconfig.js');
 const controller = {
 
   signin: function(req, res) {
-    console.log("-----------------");
+
+    console.log("SERVER SIDE SIGNIN");
+
     const username = req.query.username;
     const password = req.query.password;
-    console.log("in sign in controller: res");
+
     User.findOne({ username: username })
     .exec(function(err, user) {
       if(user && User.validatePW(password, user.password)) {
         const token = jwt.sign(user, dbconfig.secret, {
           expiresIn: 86400 // expires in 24 hours
         });
-
         return res.json({
           success: true,
           token: token
         });
       }
-      return res.status(403).send('Invalid e-mail or password');
+      return res.json({
+        success: false,
+        error: "Imvalid e-mail or password"
+      });
     });
   },
 
-
-
   create: function(req, res, next) {
+
+    console.log("SERVER SIDE SIGNUP");
+
     const password = User.generateHash(req.body.password);
     const username = req.body.username;
  	  const name = req.body.name;
 
-	  const q=User.findOne({ username: username });
-	  q.exec(function(err, user) {
+	  User.findOne({ username: username })
+	  .exec(function(err, user) {
     	if(err) {
     		console.log("error");
     	}
@@ -48,39 +53,39 @@ const controller = {
       	});
       	newUser.save(function(err, user) {
       		if (err) {
+              console.log("found user but not able to save")
       		  	res.status(500).send(err);
       		}else {
-
             const token = jwt.sign(user, dbconfig.secret, {
               expiresIn: 86400 // expires in 24 hours
             });
-            console.log("here is my token::::::", token);
             return res.json({
               success: true,
               token: token,
-              message: 'Enjoy your Toeken'
+              message: 'Token assigned'
              });   
           }        	
    	    });
       } else {
-        console.log('Account already exists');
-        res.redirect('/auth');
+        return res.json({
+          success: false,
+          error: "Account already exist"
+        })
       }
     });
 
   },
 
   authenticate: function(req, res) {
-    
-    console.log("req: ", req.headers);    
+      
     let token = req.headers.token;
-    console.log("INSIDE AUTHENTICATE",token);
+    console.log("----------req.headers: ------",req.headers)
     jwt.verify(token, dbconfig.secret, function(err, payload) {
       if (err) {
-        console.log("inside invalid authentication");
+        console.log("INVALID AUTHENTICATION");
         res.status(403).send('Invalid authentication token');
       } else {
-        console.log("inside valid authentication");
+        console.log("VALID AUTHENTICATION");
         res.status(200).send({});
       }
     });
