@@ -1,11 +1,21 @@
 import React, {Component} from 'react';
 
-const FriendsMain = () => {
+/* Redux */
+import store from '../../redux/store';
+import { connect } from 'react-redux';
+
+
+
+const FriendsMain = ({ friends }) => {
   return (
     <div>
-      We are in Friends
+      {JSON.stringify(friends.friendsList)}
     </div>
   )
 }
 
-export default FriendsMain
+export default connect((store) => {
+  return {
+    friends : store.friends
+  };
+})(FriendsMain);

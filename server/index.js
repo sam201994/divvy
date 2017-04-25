@@ -16,3 +16,5 @@ app.listen(port, function() {
 app.post('/users/create', userCtrl.create);
 app.get('/users/auth', userCtrl.authenticate);
 app.get('/users/signin', userCtrl.signin)
+
+app.get('/getfriends', userCtrl.getfriends)

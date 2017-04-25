@@ -3,9 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Link, browserHistory} from 'react-router';
 
-/* other modules */
-import axios from 'axios';
-
 /* components */
 import  Signin from './Signin.jsx';
 import Signup from './Signup.jsx';

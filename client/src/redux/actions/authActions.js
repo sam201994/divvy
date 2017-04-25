@@ -1,6 +1,7 @@
 import store from '../../redux/store';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import { updateFriendList } from './friendsActions.js';
 
 export function loggedInName(myName) {
   store.dispatch({
@@ -16,6 +17,7 @@ export function handleSignin (e) {
   const password = e.target.querySelector('[name="password"]').value;
 
   loggedInName(username); 
+  updateFriendList();
 
   axios.get('/users/signin', {
     params: {
@@ -44,6 +46,7 @@ export function handleSignup (e) {
   const confirmPassword = e.target.querySelector('[name="confirm_password"]').value;
   
   loggedInName(username); 
+  updateFriendList();
 
   if (password !== confirmPassword) {
     setError("passwords do not match");

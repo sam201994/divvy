@@ -40,7 +40,7 @@ const controller = {
     const username = req.body.username;
  	  const name = req.body.name;
 
-	  User.findOne({ username: username })
+    User.findOne({ username: username })
 	  .exec(function(err, user) {
     	if(err) {
     		console.log("error");
@@ -76,10 +76,22 @@ const controller = {
 
   },
 
+  getfriends: function(req, res) {
+    User.find({}, function(err, users){
+
+      let userData = {}
+
+      users.forEach(function(user) {
+        userData[user.username] = {username: user.username, name: user.name, id: user._id}
+      });
+      return res.json({friends: userData});  
+
+    })
+  },
+
   authenticate: function(req, res) {
       
     let token = req.headers.token;
-    console.log("----------req.headers: ------",req.headers)
     jwt.verify(token, dbconfig.secret, function(err, payload) {
       if (err) {
         console.log("INVALID AUTHENTICATION");
