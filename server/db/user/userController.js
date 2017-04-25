@@ -7,6 +7,29 @@ const dbconfig = require('../dbconfig.js');
 
 const controller = {
 
+  signin: function(req, res) {
+    console.log("-----------------");
+    const username = req.query.username;
+    const password = req.query.password;
+    console.log("in sign in controller: res");
+    User.findOne({ username: username })
+    .exec(function(err, user) {
+      if(user && User.validatePW(password, user.password)) {
+        const token = jwt.sign(user, dbconfig.secret, {
+          expiresIn: 86400 // expires in 24 hours
+        });
+
+        return res.json({
+          success: true,
+          token: token
+        });
+      }
+      return res.status(403).send('Invalid e-mail or password');
+    });
+  },
+
+
+
   create: function(req, res, next) {
     const password = User.generateHash(req.body.password);
     const username = req.body.username;
@@ -31,8 +54,8 @@ const controller = {
             const token = jwt.sign(user, dbconfig.secret, {
               expiresIn: 86400 // expires in 24 hours
             });
-
-            return res.send({
+            console.log("here is my token::::::", token);
+            return res.json({
               success: true,
               token: token,
               message: 'Enjoy your Toeken'
@@ -41,15 +64,17 @@ const controller = {
    	    });
       } else {
         console.log('Account already exists');
-        res.redirect('/auth/signup');
+        res.redirect('/auth');
       }
     });
 
   },
 
   authenticate: function(req, res) {
-    console.log("INSIDE AUTHENTICATE");
+    
+    console.log("req: ", req.headers);    
     let token = req.headers.token;
+    console.log("INSIDE AUTHENTICATE",token);
     jwt.verify(token, dbconfig.secret, function(err, payload) {
       if (err) {
         console.log("inside invalid authentication");
@@ -62,4 +87,3 @@ const controller = {
   }
 };
 module.exports = controller;
-

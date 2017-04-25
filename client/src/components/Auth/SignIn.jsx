@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 const Signin = (props) => (
   <div id="signin">
     <h2>Log in to Begin Divvy</h2>
-    <form name="signinForm">
+    <form name="signinForm" onSubmit={props.signin}>
       <div>
         <input type="text" name="username" placeholder="username" required />
       </div>

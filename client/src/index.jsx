@@ -26,7 +26,7 @@ const Root = props => (
     <Route path="/auth" component={Auth}> 
     </Route>
  	 <Route path="/" component={App} onEnter={requireAuth}>
-      <IndexRedirect to="/friends" />
+      <IndexRedirect to="/Auth" />
 	    <Route path="/friends" component={Friends} onEnter={requireAuth}/>
 	    <Route path="/addBill" component={AddBill} onEnter={requireAuth}/>
 	    <Route path="/settings" component={Settings} onEnter={requireAuth}/>
@@ -58,7 +58,7 @@ function requireAuth(nextState, replace, blah) {
   .catch((err) => {
     console.log("INSIDE REQUIRE AUTH: nextState.location ",nextState.location );
     replace({
-      pathname: '/auth/signin',
+      pathname: '/auth',
       state: {
         nextPathname: nextState.location.pathname
       }

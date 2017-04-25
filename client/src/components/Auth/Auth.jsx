@@ -31,7 +31,7 @@ export default class Auth extends React.Component {
             <h1>Welcome to <span className="beautify">Divvy</span></h1>
           </div>
           <div id="authNav">
-            <Signin />
+            <Signin signin={this.handleSignin}/>
             <Signup signup={this.handleSignup}/>
           </div>
         </div>
@@ -40,8 +40,30 @@ export default class Auth extends React.Component {
   }
 
   handleSignin (e) {
+   
     e.preventDefault();
-    console.log("after signing In");
+    const username = e.target.querySelector('[name="username"]').value;
+    const password = e.target.querySelector('[name="password"]').value;
+
+    axios.get('/users/signin', {
+      params: {
+        username: username,
+        password: password
+      }
+    })
+    .then((res) => {
+      console.log("after signin---------: ", res);
+      localStorage.setItem('token', res.data.token);
+       if (res.data.success) {
+         browserHistory.push('/friends');
+        } else {
+          this.setState({
+            error: 'An error occurred'
+          });
+        }
+
+    })
+    .catch(this.setError);
   }
 
   handleSignup (e) {
@@ -67,6 +89,7 @@ export default class Auth extends React.Component {
 
         console.log("INSIDE routeToFriends: res ", res);
         console.log("INSIDE routeToFriends: this.props: ", this.props);
+        localStorage.setItem('token', res.data.token);
 
         if (res.data.success) {
          browserHistory.push('/friends');

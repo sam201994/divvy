@@ -15,4 +15,8 @@ User.generateHash = (password) => {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
 };
 
+User.validatePW = (enteredPW, storedPW) => {
+  return bcrypt.compareSync(enteredPW, storedPW);
+};
+
 module.exports = User;
