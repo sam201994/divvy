@@ -1,4 +1,4 @@
-# DIVVY ![exp icon](https://github.com/sam201994/divvy/blob/master/client/dist/img/favicon.png=100x20)
+# DIVVY ![exp icon](https://github.com/sam201994/divvy/blob/master/client/dist/img/favicon.png)
 
 Split your Bills.
 
@@ -6,7 +6,7 @@ Split your Bills.
 
   * Clientside: React, React Router, Redux
   * Serverside: Express/Node
-  * Database: Postgres - mongoDB
+  * Database: mongoDB
   * ORM: Mongoose
 
 ## Developer
