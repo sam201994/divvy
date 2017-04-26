@@ -5,11 +5,11 @@ import store from '../../redux/store';
 import { connect } from 'react-redux';
 
 
-const UserExpense = ({ username, name, friends }) => {
+const Users = ({ username, friends }) => {
 
   return (
-    <div>
-	   {username + name}
+    <div onClick={oal.bind(null)}>
+	   {username}
     </div>
   )
 }
@@ -18,6 +18,9 @@ export default connect((store) => {
   return {
     friends : store.friends
   };
-})(UserExpense);
+})(Users);
 
 // {JSON.stringify(friends.friendsList)}
+function oal () {
+	console.log("holapola")
+}

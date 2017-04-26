@@ -14,7 +14,10 @@ const FriendsMain = ({ friends }) => {
 	        {
 	        	Object.keys(friends.friendsList).map((key, index) => {
                 return (
-                  <UserExpense />
+                  <UserExpense 
+                  key={index} 
+                  username={key} 
+                  name={friends.friendsList[key].name}/>
                 );
 	            
 	          })
