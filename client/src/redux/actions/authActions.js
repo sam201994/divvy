@@ -16,8 +16,7 @@ export function handleSignin (e) {
   const username = e.target.querySelector('[name="username"]').value;
   const password = e.target.querySelector('[name="password"]').value;
 
-  loggedInName(username); 
-  updateFriendList();
+
 
   axios.get('/users/signin', {
     params: {
@@ -28,6 +27,8 @@ export function handleSignin (e) {
   .then((res) => {
     localStorage.setItem('token', res.data.token);
     if (res.data.success) {
+        loggedInName(username); 
+        updateFriendList(username);
        browserHistory.push('/friends');
     } else {
         setError(res.data.error);
@@ -46,7 +47,7 @@ export function handleSignup (e) {
   const confirmPassword = e.target.querySelector('[name="confirm_password"]').value;
   
   loggedInName(username); 
-  updateFriendList();
+  updateFriendList(username);
 
   if (password !== confirmPassword) {
     setError("passwords do not match");
@@ -59,7 +60,9 @@ export function handleSignup (e) {
     .then((res) => {
       localStorage.setItem('token', res.data.token);
       if (res.data.success) {
-       browserHistory.push('/friends');
+          loggedInName(username); 
+          updateFriendList(username);
+          browserHistory.push('/friends');
       } else {
         setError(res.data.error);
       }

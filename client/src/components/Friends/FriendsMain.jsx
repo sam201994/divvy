@@ -3,13 +3,23 @@ import React, {Component} from 'react';
 /* Redux */
 import store from '../../redux/store';
 import { connect } from 'react-redux';
-
-
+import TotalExpenses from './TotalExpenses.jsx'
+import UserExpense from './UserExpense.jsx'
 
 const FriendsMain = ({ friends }) => {
   return (
     <div>
-      {JSON.stringify(friends.friendsList)}
+       <TotalExpenses />
+       <div>
+	        {
+	        	Object.keys(friends.friendsList).map((key, index) => {
+                return (
+                  <UserExpense />
+                );
+	            
+	          })
+	      	}
+    	</div>
     </div>
   )
 }
@@ -19,3 +29,5 @@ export default connect((store) => {
     friends : store.friends
   };
 })(FriendsMain);
+
+// {JSON.stringify(friends.friendsList)}

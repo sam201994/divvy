@@ -14,6 +14,7 @@ const controller = {
     const username = req.query.username;
     const password = req.query.password;
 
+    console.log("rerere: ", req.query)
     User.findOne({ username: username })
     .exec(function(err, user) {
       if(user && User.validatePW(password, user.password)) {
@@ -77,12 +78,14 @@ const controller = {
   },
 
   getfriends: function(req, res) {
+    const myUserName = req.query.myUserName;
     User.find({}, function(err, users){
 
       let userData = {}
 
       users.forEach(function(user) {
-        userData[user.username] = {username: user.username, name: user.name, id: user._id}
+        if(user.username !== myUserName)
+          userData[user.username] = {username: user.username, name: user.name, id: user._id}
       });
       return res.json({friends: userData});  
 
