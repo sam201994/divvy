@@ -3,13 +3,13 @@ import React, {Component} from 'react';
 /* Redux */
 import store from '../../redux/store';
 import { connect } from 'react-redux';
-import { createBill, amountPaid } from '../../redux/actions/addBillActions.js';
+import { createBill, amountPaid, updateDiscription } from '../../redux/actions/addBillActions.js';
 
 const AddedUsers = ({ addBill }) => {
 
   return (
     <div>
-
+    	<input type="text" placeholder="Discription" onChange={updateDiscription}/>
 	  	{
             	Object.keys(addBill.usersAdded).map((key, index) => {
                   return (
@@ -25,7 +25,9 @@ const AddedUsers = ({ addBill }) => {
                 
               })
           }
-         <button className="btn" onClick={createBill.bind(null,addBill.usersAdded)}>create bill</button>
+         <button 
+         	className="btn" 
+         	onClick={createBill.bind(null,addBill.usersAdded,addBill.billDiscription)}>create bill</button>
 
 	   
     </div>

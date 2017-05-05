@@ -10,7 +10,8 @@ export function updateFriendList(myUserName) {
     }
   })
   .then((res) => {
-		const friends = res.data;
+		let friends = res.data;
+
 		store.dispatch({
   		type: 'UPDATE_FRIENDLIST',
   		payload: { friends }

@@ -10,10 +10,41 @@ export function addUsersToBill(addUser) {
   });
 }
 
-export function createBill(usersAdded) {
-	console.log("inside create bill",usersAdded);
+export function createBill(usersAdded, billDiscription, totalAmount) {
+	console.log("inside create bill",usersAdded, billDiscription);
+
+
+  axios.post('/createBill', {
+      discription: billDiscription,
+      totalAmount: 33,
+      division: [['sam', 'goku',1],['sam','soi',1]]
+  }) 
+  .then((res) => {
+    if (res.data.success) {
+      // loggedInName(username); 
+      // updateFriendList(username);
+      // browserHistory.push('/friends');
+      console.log("bill created");
+    } else {
+      setError(res.data.error);
+    }
+  })
+  .catch("ERROR");
+  
 
  
+}
+
+
+export function updateDiscription(e) {
+ 
+ const billDiscription = e.target.value;
+  // value
+
+  store.dispatch({
+    type: 'UPDATE_BILL_DISCRIPTION',
+    payload: { billDiscription }
+  });
 }
 
 export function amountPaid(e) {

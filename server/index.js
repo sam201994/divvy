@@ -4,6 +4,7 @@ const app = express();
 const port = process.env.PORT || 8000;
 const db = require('./db/config.js');
 const userCtrl = require('./db/user/userController.js');
+const billCtrl = require('./db/bill/billController.js');
 
 require('./middleware')(app, express);
 
@@ -18,3 +19,4 @@ app.get('/users/auth', userCtrl.authenticate);
 app.get('/users/signin', userCtrl.signin)
 
 app.get('/getfriends', userCtrl.getfriends)
+app.post('/createBill', billCtrl.createBill)

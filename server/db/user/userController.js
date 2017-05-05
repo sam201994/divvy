@@ -85,7 +85,7 @@ const controller = {
 
       users.forEach(function(user) {
         if(user.username !== myUserName)
-          userData[user.username] = {username: user.username, name: user.name, id: user._id}
+          userData[user.username] = {username: user.username, name: user.name, id: user._id, score: "settled up"}
       });
       return res.json({friends: userData});  
 
