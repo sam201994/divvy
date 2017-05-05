@@ -3,13 +3,14 @@ import React, {Component} from 'react';
 /* Redux */
 import store from '../../redux/store';
 import { connect } from 'react-redux';
-
+import { addUsersToBill } from '../../redux/actions/addBillActions.js';
 
 const Users = ({ username, friends }) => {
 
   return (
-    <div onClick={oal.bind(null)}>
+    <div>
 	   {username}
+	   <button onClick={addUsersToBill.bind(null,username)}>+</button>
     </div>
   )
 }
@@ -21,6 +22,3 @@ export default connect((store) => {
 })(Users);
 
 // {JSON.stringify(friends.friendsList)}
-function oal () {
-	console.log("holapola")
-}

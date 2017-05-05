@@ -16,6 +16,7 @@ import Settings from './components/Settings/SettingsMain.jsx';
 import Auth from './components/Auth/Auth.jsx';
 import Signin from './components/Auth/Signin.jsx';
 import Signup from './components/Auth/Signup.jsx';
+import AddedUsers from './components/AddBill/AddedUsers.jsx';
 
 /* other files */
 import { requireAuth } from './redux/actions/authActions.js';
@@ -32,8 +33,12 @@ const Root = props => (
       <IndexRedirect to="/auth" />
 	    <Route path="/friends" component={Friends} onEnter={requireAuth}/>
 	    <Route path="/addBill" component={AddBill} onEnter={requireAuth}/>
+     
+      
+      <Route path="/next" component={AddedUsers}/>
 	    <Route path="/settings" component={Settings} onEnter={requireAuth}/>
     </Route>
+
  </Router>
  </Provider>
 );

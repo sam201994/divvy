@@ -3,21 +3,33 @@ import React, {Component} from 'react';
 import store from '../../redux/store';
 import { connect } from 'react-redux';
 import Users from './Users.jsx'
+import {Link, browserHistory} from 'react-router';
+
+
 
 const AddBillMain = ({ friends }) => {
   return (
      <div>
-	        {
-	        	Object.keys(friends.friendsList).map((key, index) => {
-                return (
-                  <Users
-                   key={index} 
-                   username={key}
-                   />
-                );
-	            
-	          })
-	      	}
+       <div>
+            {
+            	Object.keys(friends.friendsList).map((key, index) => {
+                  return (
+                    <Users
+                     key={index} 
+                     username={key}
+                     />
+                  );
+                
+              })
+          	}
+         </div>
+
+         <div>
+         <Link to="next">
+            <button>next</button>
+         </Link>
+         </div>
+
     	</div>
   )
 }
@@ -26,3 +38,5 @@ export default connect((store) => {
     friends : store.friends
   };
 })(AddBillMain);
+
+    
