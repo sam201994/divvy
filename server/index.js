@@ -20,3 +20,4 @@ app.get('/users/signin', userCtrl.signin)
 
 app.get('/getfriends', userCtrl.getfriends)
 app.post('/createBill', billCtrl.createBill)
+app.get('/getBills', billCtrl.getBills)

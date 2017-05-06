@@ -5,14 +5,11 @@ import store from '../../redux/store';
 import { connect } from 'react-redux';
 
 
-const UserExpense = ({ username, name, score, friends }) => {
+const UserBills = ({  }) => {
 
   return (
     <div>
-	   {username + name}
-	   <span>{score}</span>
-	   
-
+    inside user bills
     </div>
   )
 }
@@ -21,6 +18,6 @@ export default connect((store) => {
   return {
     friends : store.friends
   };
-})(UserExpense);
+})(UserBills);
 
 // {JSON.stringify(friends.friendsList)}

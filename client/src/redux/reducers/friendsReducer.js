@@ -19,6 +19,21 @@ export default function friendsReducer(state = defaults, action) {
 	  	newState.total_balance = action.payload.balance.total_balance
 	    return newState;
 	  }
+	  case 'UPDATE_SCORE': {
+	      const newState = Object.create(state);
+	      console.log("inside reducer in store",action.payload.username);
+	      newState.friendsList[action.payload.username].score = action.payload.amount
+	      
+	      return newState;
+	   }
+	    case 'SET_DEFAULT_SCORE': {
+	      const newState = Object.create(state);
+	      for(let key in newState.friendsList) {
+	     newState.friendsList[key].score = 0;
+	      }
+	      
+	      return newState;
+	   }
 	}
 
 	return state;

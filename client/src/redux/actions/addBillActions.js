@@ -1,7 +1,16 @@
 import store from '../../redux/store';
 import axios from 'axios';
+import store from '../store.js'
+import { updateFriendList } from './friendsActions.js';
 
+export function updateScore(username, amount){
+         console.log(username, amount, "inside updatescore funtion")
+  store.dispatch({
+    type: 'UPDATE_SCORE',
+    payload: { username: username, amount: amount }
+  });
 
+}
 export function addUsersToBill(addUser) {
 	console.log("inside addusers to bull", addUser);
   store.dispatch({
@@ -16,14 +25,16 @@ export function createBill(usersAdded, billDiscription, totalAmount) {
 
   axios.post('/createBill', {
       discription: billDiscription,
-      totalAmount: 33,
-      division: [['sam', 'goku',1],['sam','soi',1]]
+      totalAmount: 36,
+      members: { shrd: 8, sam: 26, soi: 2},
+      division: [['shrd', 'sam',4],['soi','sam',10]]
   }) 
   .then((res) => {
     if (res.data.success) {
       // loggedInName(username); 
       // updateFriendList(username);
       // browserHistory.push('/friends');
+      getBills("sam")
       console.log("bill created");
     } else {
       setError(res.data.error);
@@ -58,30 +69,55 @@ export function amountPaid(e) {
   });
 }
 
-// export function addUsersToBill (e) {
+export function getBills(myName) {
+   store.dispatch({
+      type: 'SET_DEFAULT_SCORE',
+    });
+
+  axios.get('/getBills')
+  .then((res) => {
+    const bills = res.data.allBills;
+       store.dispatch({
+      type: 'UPDATE_BILLS',
+      payload: { bills }
+    });
+
+
    
-//   e.preventDefault();
-//   const username = e.target.querySelector('[name="username"]').value;
-//   const password = e.target.querySelector('[name="password"]').value;
+       return bills;
 
+  })
+  .then((res) => {
 
+    bb(myName);
+  })
+  .catch("ERROR");
 
-//   axios.get('/users/signin', {
-//     params: {
-//       username: username,
-//       password: password
-//     }
-//   })
-//   .then((res) => {
-//     localStorage.setItem('token', res.data.token);
-//     if (res.data.success) {
-//         loggedInName(username); 
-//         updateFriendList(username);
-//        browserHistory.push('/friends');
-//     } else {
-//         setError(res.data.error);
-//     }
-//   })
-//   .catch("ERROR");
+}
 
-// }
+function bb(myName) {
+ 
+  const friendsList = store.getState().friends.friendsList;
+
+  const allBills = store.getState().addBill.allBills;
+
+console.log("freindlist before chaing the score: ", friendsList, allBills);
+
+    Object.keys(allBills).forEach(function(item) {
+      //if(item.members[myName]) {
+        // AddBillToUser()
+
+        allBills[item].division.forEach(function(d) {
+
+          if(d[0] === myName) {     
+   
+            updateScore(d[1],friendsList[d[1]].score + d[2]);
+          } else if(d[1] === myName) {
+      
+            updateScore(d[0], friendsList[d[0]].score - d[2]);
+          }
+        })
+      //}
+    })
+}
+

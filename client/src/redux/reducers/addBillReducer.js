@@ -1,6 +1,7 @@
 const defaults = {
   usersAdded:{},
-  billDiscription:'' 
+  billDiscription:'' ,
+  allBills:''
 };
 
 export default function authReducer(state = defaults, action) {
@@ -23,6 +24,13 @@ export default function authReducer(state = defaults, action) {
       const newState = Object.create(state);
 
       newState.billDiscription = action.payload.billDiscription
+      
+      return newState;
+    }
+    case 'UPDATE_BILLS': {
+      const newState = Object.create(state);
+      console.log(newState.allBills);
+      newState.allBills = action.payload.bills
       
       return newState;
     }

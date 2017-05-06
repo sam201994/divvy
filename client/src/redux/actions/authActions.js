@@ -2,6 +2,7 @@ import store from '../../redux/store';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import { updateFriendList } from './friendsActions.js';
+import { getBills } from './addBillActions.js';
 
 export function loggedInName(myName) {
   store.dispatch({
@@ -29,10 +30,15 @@ export function handleSignin (e) {
     if (res.data.success) {
         loggedInName(username); 
         updateFriendList(username);
-       browserHistory.push('/friends');
+
+    
+      
     } else {
         setError(res.data.error);
     }
+  })
+  .then((res)=>{
+     browserHistory.push('/friends');
   })
   .catch("ERROR");
 
@@ -62,6 +68,7 @@ export function handleSignup (e) {
       if (res.data.success) {
           loggedInName(username); 
           updateFriendList(username);
+
           browserHistory.push('/friends');
       } else {
         setError(res.data.error);

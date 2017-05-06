@@ -15,6 +15,7 @@ const controller = {
     let newBill = new Bill({
       totalAmount: req.body.totalAmount,
       discription: req.body.discription,
+      members: req.body.members,
       division: req.body.division
     })
     newBill.save(function(err,bill){
@@ -31,7 +32,22 @@ const controller = {
   },
 
   getBills: function(req, res) {
-    
+
+    Bill.find({}, function(err, bills){
+    let allBills = {}
+        bills.forEach(function(bill) {
+  
+          allBills[bill._id] = {
+            discription: bill.discription, 
+            totalAmount: bill.totalAmount,
+             division: bill.division,
+             members: bill.members
+           }
+      });
+        console.log(allBills);
+      return res.json({ allBills });  
+
+    })
   }
 
 };
