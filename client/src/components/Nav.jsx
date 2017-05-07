@@ -1,13 +1,11 @@
-/* React and React-Router */
+/* modules */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Link} from 'react-router';
-
-/* redux */
-import store from '../redux/store';
 import { connect } from 'react-redux';
 
-/* other files */
+/* files */
+import store from '../redux/store';
 import { loggedInName } from '../redux/actions/authActions.js';
 
 const Nav = ({ auth }) => {

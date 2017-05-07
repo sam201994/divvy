@@ -1,13 +1,11 @@
-/* react */
+/* modules */
 import React from 'react';
 import ReactDOM from 'react-dom';
-
-/* Redux */
-import store from '../../redux/store';
 import { connect } from 'react-redux';
 
-/* other files */
+/* files */
 import { handleSignin, setError } from '../../redux/actions/authActions.js';
+import store from '../../redux/store';
 
 class Signin extends React.Component {
 

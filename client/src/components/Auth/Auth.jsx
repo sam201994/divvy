@@ -1,4 +1,4 @@
-/* React and React-Router */
+/* modules */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Link, browserHistory} from 'react-router';

@@ -1,6 +1,8 @@
-/* React */
+/* moddules */
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+/* files */
 import store from '../redux/store';
 
 /* Components */

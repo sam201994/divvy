@@ -1,8 +1,8 @@
-/* React and React-Router */
+/* modules */
 import React from 'react';
 import {Link} from 'react-router';
 
-/* other files */
+/* files */
 import authHelpers from '../Auth/auth-helpers.js';
 
 const SettingsMain = () => {

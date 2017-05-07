@@ -1,7 +1,7 @@
+/* modules */
 var mongoose = require('mongoose');
 
 mongoURI = 'mongodb://localhost/myapp';
-
 mongoose.connect(mongoURI);
 
 // Run in seperate terminal window using 'mongod'

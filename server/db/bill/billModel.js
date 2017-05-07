@@ -1,5 +1,5 @@
+/* modules */
 const mongoose = require('mongoose');
-
 
 const billSchema = mongoose.Schema({
   totalAmount: { type: Number, required: true },
@@ -10,7 +10,5 @@ const billSchema = mongoose.Schema({
 });
 
 const Bill = mongoose.model('Bill', billSchema);
-
-
 
 module.exports = Bill;

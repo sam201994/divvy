@@ -13,11 +13,22 @@ app.listen(port, function() {
 });
 
 
-//routes
+/************ ROUTES ***********/
+
+//sign up new user
 app.post('/users/create', userCtrl.create);
+
+//to check for authentication (there is still a glitch)
 app.get('/users/auth', userCtrl.authenticate);
+
+//sign in an existing user
 app.get('/users/signin', userCtrl.signin)
 
+//to retrive all users in database ( adding friends and accting request feature not added)
 app.get('/getfriends', userCtrl.getfriends)
+
+//creating a new bill - any user can create a bill;
 app.post('/createBill', billCtrl.createBill)
+
+//retrive all bills
 app.get('/getBills', billCtrl.getBills)

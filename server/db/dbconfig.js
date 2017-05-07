@@ -2,7 +2,7 @@
 
 var cfg = {
   myLocalDB: 'mongodb://localhost/myapp',
-  secret: "make a secret! just make sure it's a string or buffer or jwt will yell at you"
+  secret: "make a secret!"
 };
 
 module.exports = cfg;

@@ -18,7 +18,7 @@ import Signin from './components/Auth/Signin.jsx';
 import Signup from './components/Auth/Signup.jsx';
 import AddedUsers from './components/AddBill/AddedUsers.jsx';
 
-/* other files */
+/* files */
 import { requireAuth } from './redux/actions/authActions.js';
 
 

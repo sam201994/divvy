@@ -1,6 +1,9 @@
-import store from '../../redux/store';
+/* modules */
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+
+/* files */
+import store from '../store.js';
 import { updateFriendList } from './friendsActions.js';
 import { getBills } from './addBillActions.js';
 
@@ -17,8 +20,6 @@ export function handleSignin (e) {
   const username = e.target.querySelector('[name="username"]').value;
   const password = e.target.querySelector('[name="password"]').value;
 
-
-
   axios.get('/users/signin', {
     params: {
       username: username,
@@ -27,14 +28,11 @@ export function handleSignin (e) {
   })
   .then((res) => {
     localStorage.setItem('token', res.data.token);
-    if (res.data.success) {
-        loggedInName(username); 
-        updateFriendList(username);
-
-    
-      
-    } else {
-        setError(res.data.error);
+    if(res.data.success) {
+      loggedInName(username); 
+      updateFriendList(username);
+    }else {
+      setError(res.data.error);
     }
   })
   .then((res)=>{
@@ -68,7 +66,6 @@ export function handleSignup (e) {
       if (res.data.success) {
           loggedInName(username); 
           updateFriendList(username);
-
           browserHistory.push('/friends');
       } else {
         setError(res.data.error);
@@ -99,6 +96,7 @@ export function requireAuth(nextState, replace, blah) {
     blah();
   });
 }
+
 function blah() {
   console.log("I am uselss blah");
 }

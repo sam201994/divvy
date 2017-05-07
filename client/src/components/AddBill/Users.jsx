@@ -1,9 +1,10 @@
+/* modules */
 import React, {Component} from 'react';
-
-/* Redux */
-import store from '../../redux/store';
 import { connect } from 'react-redux';
+
+/* files */
 import { addUsersToBill } from '../../redux/actions/addBillActions.js';
+import store from '../../redux/store';
 
 const Users = ({ username, friends }) => {
 
@@ -20,5 +21,3 @@ export default connect((store) => {
     friends : store.friends
   };
 })(Users);
-
-// {JSON.stringify(friends.friendsList)}

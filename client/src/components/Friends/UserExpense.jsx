@@ -24,4 +24,3 @@ export default connect((store) => {
   };
 })(UserExpense);
 
-// {JSON.stringify(friends.friendsList)}
