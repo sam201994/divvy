@@ -2,7 +2,8 @@ const defaults = {
   friendsList: '',
   you_owe: 'US$ 0.00',
   you_are_owed: 'US$ 0.00',
-  total_balance: 'US$ 0.00'
+  total_balance: 'US$ 0.00',
+  currentUser: ''
 };
 
 export default function friendsReducer(state = defaults, action) {
@@ -33,6 +34,17 @@ export default function friendsReducer(state = defaults, action) {
 	      }
 	      
 	      return newState;
+	   }
+	     case 'UPDATE_CURRENT_USER': {
+	      const newState = Object.create(state);
+	    	newState.currentUser = action.payload.currentUser
+	      
+	      return newState;
+	   }
+	   case 'ADD_BILL_IDS' : {
+	   	const newState = Object.create(state);
+	   	newState.friendsList[action.payload.username].bills.push(action.payload.billID)
+	   	return newState;
 	   }
 	}
 

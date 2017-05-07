@@ -20,6 +20,14 @@ export function updateFriendList(myUserName) {
   .catch("ERROR");
 
 }
+export function updateCurrentUser(currentUser) {
+
+    store.dispatch({
+      type: 'UPDATE_CURRENT_USER',
+      payload: { currentUser }
+    });
+}
+
 
 export function updateBalance() {
   

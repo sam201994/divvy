@@ -5,6 +5,7 @@ import store from '../../redux/store';
 import { connect } from 'react-redux';
 import TotalExpenses from './TotalExpenses.jsx'
 import UserExpense from './UserExpense.jsx'
+import UserBills from './UserBills.jsx'
 import { getBills, updateScore } from '../../redux/actions/addBillActions.js';
 
 class FriendsMain extends React.Component { 
@@ -20,27 +21,38 @@ class FriendsMain extends React.Component {
 
   render() {
     const { friends } = this.props;
-    return (
-    <div>
-       <TotalExpenses />
-       <div>
-          {
-            Object.keys(friends.friendsList).map((key, index) => {
-                return (
-                  <UserExpense 
-                  key={index} 
-                  username={key} 
-                  name={friends.friendsList[key].name}
-                  score={friends.friendsList[key].score}
-                  />
+    if(friends.currentUser === "") {
+          return (
+              <div>
+                 <TotalExpenses />
+                 <div>
+                    {
+                      Object.keys(friends.friendsList).map((key, index) => {
+                          return (
+                            <UserExpense 
+                            
+                            key={index} 
+                            username={key} 
+                            name={friends.friendsList[key].name}
+                            score={friends.friendsList[key].score}
+                            />
 
-                );
-              
-            })
-          }
-      </div>
-    </div>
-  )
+                          );
+                        
+                      })
+                    }
+                </div>
+              </div>
+            )
+    } else {
+        return (
+          <div>
+            <UserBills />
+          </div>
+          )
+    }
+
+  
   }
 }
 // const FriendsMain = ({ friends }) => {

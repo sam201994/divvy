@@ -46,6 +46,14 @@ export function createBill(usersAdded, billDiscription, totalAmount) {
  
 }
 
+export function AddBillToUser(billID, username) {
+
+  store.dispatch({
+    type: 'ADD_BILL_IDS',
+    payload: { billID: billID, username: username }
+  });
+}
+
 
 export function updateDiscription(e) {
  
@@ -105,19 +113,20 @@ console.log("freindlist before chaing the score: ", friendsList, allBills);
 
     Object.keys(allBills).forEach(function(item) {
       //if(item.members[myName]) {
-        // AddBillToUser()
+        
 
         allBills[item].division.forEach(function(d) {
 
           if(d[0] === myName) {     
-   
+            AddBillToUser(item, d[1])
             updateScore(d[1],friendsList[d[1]].score + d[2]);
           } else if(d[1] === myName) {
-      
+                  AddBillToUser(item, d[0])
             updateScore(d[0], friendsList[d[0]].score - d[2]);
           }
         })
       //}
     })
 }
+
 
