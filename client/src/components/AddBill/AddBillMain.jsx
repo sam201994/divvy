@@ -5,30 +5,43 @@ import { connect } from 'react-redux';
 
 /* files */
 import store from '../../redux/store';
+import { setDefaults_bill } from '../../redux/actions/addBillActions.js';
+import { setError } from '../../redux/actions/authActions.js';
 
 /* components */
 import Users from './Users.jsx'
 
-const AddBillMain = ({ friends }) => {
-  return (
-    <div>
+class AddBillMain extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+  componentWillMount(){
+    setDefaults_bill();
+    setError();
+  }
+  render() {
+    const { friends } = this.props;
+    return (
       <div>
-        {Object.keys(friends.friendsList).map((key, index) => {
-            return (
-              <Users
-               key={index} 
-               username={key}
-               />
-            );
-        })}
+        <div>
+          {Object.keys(friends.friendsList).map((key, index) => {
+              return (
+                <Users
+                 key={index} 
+                 username={key}
+                 />
+              );
+          })}
+        </div>
+        <div>
+          <Link to="next">
+            <button>next</button>
+          </Link>
+        </div>
       </div>
-      <div>
-        <Link to="next">
-          <button>next</button>
-        </Link>
-      </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default connect((store) => {
@@ -36,5 +49,6 @@ export default connect((store) => {
     friends : store.friends
   };
 })(AddBillMain);
+
 
     

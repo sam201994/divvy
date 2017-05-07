@@ -1,7 +1,8 @@
 const defaults = {
   usersAdded:{},
   billDiscription:'' ,
-  allBills:''
+  allBills:'',
+  current_totalAmount: 0
 };
 
 export default function addBillReducer(state = defaults, action) {
@@ -28,6 +29,18 @@ export default function addBillReducer(state = defaults, action) {
       const newState = Object.create(state);
       newState.allBills = action.payload.bills
       return newState;
+    }
+    case 'SET_DEFAULTS_BILL': {
+      const newState = Object.create(state);
+      newState.usersAdded = {};
+      newState.current_totalAmount = 0;
+      newState.billDiscription = "";
+      return newState;
+    }
+    case 'UPDATE_TOTALAMOUNT': {
+      const newState = Object.create(state);
+      newState.current_totalAmount = action.payload.amount;
+      return newState; 
     }
 
   }

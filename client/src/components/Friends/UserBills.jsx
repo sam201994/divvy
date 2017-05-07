@@ -12,19 +12,25 @@ const UserBills = ({ friends, bills }) => {
   return (
     <div>
       <div onClick={updateCurrentUser.bind(null,"")}>back</div>
-      <p>
-        {friends.currentUser}
-      </p>
       <div>
-          {friends.friendsList[friends.currentUser].bills.map((id) => {
-            return (
-              <div key={id}>
-                <h3>
-                  {bills.allBills[id].discription}
-                </h3>
-              </div>
-            )
-          })}
+        <div>
+          <h2>
+            {friends.currentUser}
+          </h2>
+        </div>
+
+        <div>
+            {friends.friendsList[friends.currentUser].bills.map((id) => {
+              return (
+                <div key={id}>
+                    {bills.allBills[id].discription}
+                  <div>total amount {bills.allBills[id].totalAmount}</div>
+                  <div>----------------------------</div>
+                </div>
+              )
+            })}
+        </div>
+
       </div>
     </div>
   )

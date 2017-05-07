@@ -17,7 +17,7 @@ const controller = {
     })
     newBill.save(function(err,bill){
       if(err){
-        return res.json({error: err})
+        return res.json({error: "Bill not created"})
       }
       return res.json({
         success: true,
